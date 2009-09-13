@@ -60,5 +60,9 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 
 == Changelog ==
 
+= 1.0.1 =
+* code clean up and error trapping
+* minor improvement in IE6 compatibility
+
 = 1.0 =
 * Initial Release
