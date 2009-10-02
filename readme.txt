@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets
 Requires at least: 2.8 
 Tested up to: 2.8.4
-Stable tag: 1.0
+Stable tag: 1.1
 
 Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.
 
@@ -59,6 +59,10 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 3. An image in the sidebar and an image "fixed" in the bottom-right corner showing multiple instances of the widget.
 
 == Changelog ==
+
+= 1.1 =
+* added version checking using $wp_version
+* improved readability of code
 
 = 1.0.1 =
 * code clean up and error trapping
