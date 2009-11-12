@@ -3,7 +3,7 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.1
+Version: 1.1.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 */
@@ -141,7 +141,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		<hr /> <!-- Separates functionality: Widget above - plugin below -->
 		
 		<p>
-			<input class="checkbox" type="checkbox" <?php checked( $instance['widget_plugin'], true ); ?> id="<?php echo $this->get_field_id( 'widget_plugin' ); ?>" name="<?php echo $this->get_field_name( 'widget_plugin' ); ?>" />
+			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['widget_plugin'], true ); ?> id="<?php echo $this->get_field_id( 'widget_plugin' ); ?>" name="<?php echo $this->get_field_name( 'widget_plugin' ); ?>" />
 			<label for="<?php echo $this->get_field_id( 'widget_plugin' ); ?>"><?php _e('Use like a Plugin?'); ?></label>
 		</p>
 
