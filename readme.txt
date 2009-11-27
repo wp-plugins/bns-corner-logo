@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets
 Requires at least: 2.8 
-Tested up to: 2.8.4
-Stable tag: 1.1
+Tested up to: 2.9
+Stable tag: 1.1.1
 
 Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.
 
@@ -59,6 +59,11 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 3. An image in the sidebar and an image "fixed" in the bottom-right corner showing multiple instances of the widget.
 
 == Changelog ==
+
+= 1.1.1 =
+* compatibility check for WP2.9 completed
+* increased the width of the option panel
+* beginning of code to implement gravatars included (but not complete or visually apparent)
 
 = 1.1 =
 * added version checking using $wp_version

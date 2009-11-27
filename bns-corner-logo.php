@@ -29,7 +29,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$widget_ops = array( 'classname' => 'bns-corner-logo', 'description' => __('Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.') );
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'bns-corner-logo' );
+		$control_ops = array( 'width' => 400, 'height' => 350, 'id_base' => 'bns-corner-logo' );
 
 		/* Create the widget. */
 		$this->WP_Widget( 'bns-corner-logo', 'BNS Corner Logo', $widget_ops, $control_ops );
@@ -39,10 +39,11 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		extract( $args );
 
 		/* User-selected settings. */
-		$title			= apply_filters('widget_title', $instance['title'] );
-		$image_url		= $instance['image_url'];
+		$title          = apply_filters('widget_title', $instance['title'] );
+		$use_gravatar   = $instance['use_gravatar'];
+		$image_url		  = $instance['image_url'];
 		$image_alt_text	= $instance['image_alt_text'];
-		$image_link		= $instance['image_link'];
+		$image_link     = $instance['image_link'];
 		$widget_plugin	= $instance['widget_plugin'];		
 		$logo_location	= $instance['logo_location'];
 		
@@ -58,7 +59,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			/* Display image based on widget settings. */ ?>
 				<div class="bns-logo" align="center">
 					<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-						<img  style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
+            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
 					</a>
 				</div>
 		
@@ -77,7 +78,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			  
 			<div class="bns-logo" align="center" style="position:fixed; <?php echo $logo_position; ?> z-index:5;">
 				<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-					<img  style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
+            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
 				</a>
 			</div>
 
@@ -95,10 +96,11 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$instance = $old_instance;
 
 		/* Strip tags (if needed) and update the widget settings. */
-		$instance['title']			= strip_tags( $new_instance['title'] );
-		$instance['image_url']		= strip_tags( $new_instance['image_url'] );
+		$instance['title']          = strip_tags( $new_instance['title'] );
+		$instance['use_gravatar']   = $new_instance['use_gravatar'];
+		$instance['image_url']      = strip_tags( $new_instance['image_url'] );
 		$instance['image_alt_text']	= strip_tags( $new_instance['image_alt_text'] );
-		$instance['image_link']		= strip_tags( $new_instance['image_link'] );
+		$instance['image_link']     = strip_tags( $new_instance['image_link'] );
 		$instance['widget_plugin']	= $new_instance['widget_plugin'];    
 		$instance['logo_location']	= $new_instance['logo_location'];
 
@@ -108,10 +110,11 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 	function form( $instance ) {
 		/* Set up some default widget settings. */
 		$defaults = array(
-				'title'				=> __('My Logo Image'),
-				'image_url'			=> '',
+				'title'           => __('My Logo Image'),
+				'use_gravatar'    => false,
+				'image_url'       => '',
 				'image_alt_text'	=> '',
-				'image_link'		=> '',
+				'image_link'      => '',
 				'widget_plugin'		=> false,      
 				'logo_location'		=> 'bottom-right'    
 			);
@@ -122,6 +125,12 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:'); ?></label>
 			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
 		</p>
+		
+		<!-- Future option - still in test as of Nov 26, 2009 -->
+		<!-- <p>
+			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['use_gravatar'], true ); ?> id="<?php echo $this->get_field_id( 'use_gravatar' ); ?>" name="<?php echo $this->get_field_name( 'use_gravatar' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'use_gravatar' ); ?>"><?php _e('Use your Gravatar image?'); ?></label>
+		</p> -->
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_url' ); ?>"><?php _e('URL of Image:'); ?></label>
