@@ -3,7 +3,7 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.1.1
+Version: 1.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 */
@@ -12,6 +12,13 @@ global $wp_version;
 $exit_message = 'BNS Corner Logo requires WordPress version 2.8 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
 if (version_compare($wp_version, "2.8", "<")) {
 	exit ($exit_message);
+}
+
+/* Add BNS Logo Style sheet */
+add_action( 'wp_head', 'add_BNS_Corner_Logo_Header_Code' );
+
+function add_BNS_Corner_Logo_Header_Code() {
+  echo '<link type="text/css" rel="stylesheet" href="' . get_bloginfo('url') . '/wp-content/plugins/bns-corner-logo/css/bns-corner-logo-style.css" />' . "\n";
 }
 
 /* Add our function to the widgets_init hook. */
@@ -41,6 +48,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		/* User-selected settings. */
 		$title          = apply_filters('widget_title', $instance['title'] );
 		$use_gravatar   = $instance['use_gravatar'];
+		$gravatar_size  = $instance['gravatar_size'];
 		$image_url		  = $instance['image_url'];
 		$image_alt_text	= $instance['image_alt_text'];
 		$image_link     = $instance['image_link'];
@@ -56,10 +64,11 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			if ( $title )
 				echo $before_title . $title . $after_title;
 			
-			/* Display image based on widget settings. */ ?>
+   		/* Display image based on widget settings. */ ?>
 				<div class="bns-logo" align="center">
 					<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
+            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>"
+              <?php if ($use_gravatar) { echo get_avatar('1', $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>
 					</a>
 				</div>
 		
@@ -78,7 +87,8 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			  
 			<div class="bns-logo" align="center" style="position:fixed; <?php echo $logo_position; ?> z-index:5;">
 				<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>" src="<?php echo $image_url; ?>" />
+            <img style="border:none; background:none; text-decoration:none;" alt="<?php echo $image_alt_text; ?>"
+              <?php if ($use_gravatar) { echo get_avatar('1', $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>
 				</a>
 			</div>
 
@@ -98,6 +108,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		/* Strip tags (if needed) and update the widget settings. */
 		$instance['title']          = strip_tags( $new_instance['title'] );
 		$instance['use_gravatar']   = $new_instance['use_gravatar'];
+		$instance['gravatar_size']  = $new_instance['gravatar_size'];
 		$instance['image_url']      = strip_tags( $new_instance['image_url'] );
 		$instance['image_alt_text']	= strip_tags( $new_instance['image_alt_text'] );
 		$instance['image_link']     = strip_tags( $new_instance['image_link'] );
@@ -112,6 +123,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$defaults = array(
 				'title'           => __('My Logo Image'),
 				'use_gravatar'    => false,
+				'gravatar_size'   => '96',
 				'image_url'       => '',
 				'image_alt_text'	=> '',
 				'image_link'      => '',
@@ -127,10 +139,22 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		</p>
 		
 		<!-- Future option - still in test as of Nov 26, 2009 -->
-		<!-- <p>
-			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['use_gravatar'], true ); ?> id="<?php echo $this->get_field_id( 'use_gravatar' ); ?>" name="<?php echo $this->get_field_name( 'use_gravatar' ); ?>" />
-			<label for="<?php echo $this->get_field_id( 'use_gravatar' ); ?>"><?php _e('Use your Gravatar image?'); ?></label>
-		</p> -->
+		<table width="100%">
+		  <tr>
+				<td width="30%">
+      		<p>
+      			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['use_gravatar'], true ); ?> id="<?php echo $this->get_field_id( 'use_gravatar' ); ?>" name="<?php echo $this->get_field_name( 'use_gravatar' ); ?>" />
+      			<label for="<?php echo $this->get_field_id( 'use_gravatar' ); ?>"><?php _e('Use your <a href="http://gravatar.com">Gravatar</a> image?'); ?></label>
+      		</p>
+        </td>
+        <td>
+          <p>
+      			<label for="<?php echo $this->get_field_id( 'gravatar_size' ); ?>"><?php _e('Gravatar size in pixels (suggested max. 512):'); ?></label>
+      			<input id="<?php echo $this->get_field_id( 'gravatar_size' ); ?>" name="<?php echo $this->get_field_name( 'gravatar_size' ); ?>" value="<?php echo $instance['gravatar_size']; ?>" style="width:100%;" />
+      		</p>
+        </td>
+      </tr>
+    </table>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_url' ); ?>"><?php _e('URL of Image:'); ?></label>
