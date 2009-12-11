@@ -10,7 +10,7 @@ Widget to display a logo; or, used as a plugin displays image fixed in one of th
 
 == Description ==
 
-Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display. Supports the use of the user-id 1 gravatar.
+Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
 
 == Installation ==
 
