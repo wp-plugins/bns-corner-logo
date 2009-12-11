@@ -10,7 +10,7 @@ Widget to display a logo; or, used as a plugin displays image fixed in one of th
 
 == Description ==
 
-Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
+Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display. Supports the use of the user-id 1 gravatar.
 
 == Installation ==
 
@@ -20,11 +20,10 @@ This section describes how to install the plugin and get it working.
 2. Activate through the 'Plugins' menu.
 3. Place the BNS Corner Logo widget appropriately in the Appearance | Widgets section of the dashboard.
 4. Enter the Title for the widget area if you do not want to use the default "My Logo Image"
-5a. Enter the complete URL to the image, including the `http://`
+5. Enter the complete URL to the image, including the `http://`
 * Optional: Enter `ALT` text for the image
 * Enter the URL for the image to link to, the "default" URL will be the page the image appears on.
-5b. Check the box to use the default admin (user-ID 1) gravatar.
-* Optional: Change the default gravatar display size (in pixels)
+* Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
 6. Click "Save"
 
 -- or -
@@ -39,8 +38,7 @@ This section describes how to install the plugin and get it working.
 8a. Enter the complete URL to the image, including the `http://`
 * Optional: Enter `ALT` text for the image
 * Enter the URL for the image to link to, the "default" URL destination will be "_self" (the page the image appears on).
-8b. Choose the default admin (user-ID 1) gravatar.
-* Optional: Change the default gravatar display size (in pixels)
+* Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
 9. Click "Save"
 
 * To use like a "fixed position" plugin:
