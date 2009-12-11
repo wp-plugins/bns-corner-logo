@@ -3,7 +3,7 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.2
+Version: 1.2.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 */
@@ -128,7 +128,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 				'image_alt_text'	=> '',
 				'image_link'      => '',
 				'widget_plugin'		=> false,      
-				'logo_location'		=> 'bottom-right'    
+				'logo_location'		=> 'Bottom-Right'
 			);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		?>
@@ -138,7 +138,6 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
 		</p>
 		
-		<!-- Future option - still in test as of Nov 26, 2009 -->
 		<table width="100%">
 		  <tr>
 				<td width="30%">
@@ -181,10 +180,10 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'logo_location' ); ?>"><?php _e('Plugin Logo Location:'); ?></label> 
 			<select id="<?php echo $this->get_field_id( 'logo_location' ); ?>" name="<?php echo $this->get_field_name( 'logo_location' ); ?>" class="widefat" style="width:100%;">
-				<option <?php if ( 'bottom-right' == $instance['format'] ) echo 'selected="selected"'; ?>>Bottom-Right</option>
-				<option <?php if ( 'bottom-left' == $instance['format'] ) echo 'selected="selected"'; ?>>Bottom-Left</option>
-				<option <?php if ( 'top-right' == $instance['format'] ) echo 'selected="selected"'; ?>>Top-Right</option>
-				<option <?php if ( 'top-left' == $instance['format'] ) echo 'selected="selected"'; ?>>Top-Left</option>
+				<option <?php if ( 'Bottom-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Right</option>
+				<option <?php if ( 'Bottom-Left' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Left</option>
+				<option <?php if ( 'Top-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Top-Right</option>
+				<option <?php if ( 'Top-Left' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Top-Left</option>
 			</select>
 		</p>
 
