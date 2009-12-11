@@ -2,7 +2,7 @@
 Contributors: cais
 Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets, gravatar
-Requires at least: 2.8 
+Requires at least: 2.8
 Tested up to: 2.9
 Stable tag: 1.2.1
 
@@ -10,7 +10,7 @@ Widget to display a logo; or, used as a plugin displays image fixed in one of th
 
 == Description ==
 
-Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display. Supports the use of the user-id 1 gravatar.
+Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
 
 == Installation ==
 
@@ -20,11 +20,9 @@ This section describes how to install the plugin and get it working.
 2. Activate through the 'Plugins' menu.
 3. Place the BNS Corner Logo widget appropriately in the Appearance | Widgets section of the dashboard.
 4. Enter the Title for the widget area if you do not want to use the default "My Logo Image"
-5. Enter the complete URL to the image, including the `http://`
-* Optional: Enter `ALT` text for the image
-* Enter the URL for the image to link to, the "default" URL will be the page the image appears on.
-* Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
-6. Click "Save"
+5. Enter the complete URL to the image, including the `http://`; Optional: Enter `ALT` text for the image; Enter the URL for the image to link to, the "default" URL will be the page the image appears on.
+6. Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
+7. Click "Save"
 
 -- or -
 
@@ -35,11 +33,9 @@ This section describes how to install the plugin and get it working.
 5. Activate through the 'Plugins' menu.
 6. Place the BNS Corner Logo widget appropriately in the Appearance | Widgets section of the dashboard.
 7. Enter the Title for the widget area if you do not want to use the default "My Logo Image"
-8a. Enter the complete URL to the image, including the `http://`
-* Optional: Enter `ALT` text for the image
-* Enter the URL for the image to link to, the "default" URL destination will be "_self" (the page the image appears on).
-* Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
-9. Click "Save"
+8. Enter the complete URL to the image, including the `http://`; Optional: Enter `ALT` text for the image; Enter the URL for the image to link to, the "default" URL destination will be "_self" (the page the image appears on).
+9. Optional: Check the box to use the default admin (user-ID 1) gravatar; change the default gravatar display size (in pixels)
+10. Click "Save"
 
 * To use like a "fixed position" plugin:
 1. Use the checkbox beside "Use like a Plugin?"
