@@ -1,3 +1,4 @@
 /* BNS Corner Logo CSS */
 
-.bns-logo .avatar {float:none;}
+div.bns-logo .avatar {float:none;}
+div.bns-logo a img.avatar {border:none;}
