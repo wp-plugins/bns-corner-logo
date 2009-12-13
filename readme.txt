@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets, gravatar
 Requires at least: 2.8
 Tested up to: 2.9
-Stable tag: 1.2.2
+Stable tag: 1.2.2.1
 
 Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.
 
