@@ -3,7 +3,7 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.2.2.1
+Version: 1.2.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 */
