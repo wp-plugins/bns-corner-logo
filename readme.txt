@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets, gravatar
 Requires at least: 2.8
 Tested up to: 2.9.1
-Stable tag: 1.2.3
+Stable tag: 1.2.3.1
 
 Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.
 
@@ -56,7 +56,22 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 2. A sample logo image in the sidebar widget area of the [Shades](http://wordpress.org/extend/themes/shades/) theme.
 3. An image in the sidebar and an image "fixed" in the bottom-right corner showing multiple instances of the widget.
 
+== Other Notes ==
+* Copyright 2009, 2010 Edward Caissie 
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+== Upgrade Notice ==
+Please stay current with your WordPress installation, your active theme, and your plugins.
+
 == Changelog ==
+= 1.2.3.1 =
+* clarified the plugin's release under a GPL license
+
 = 1.2.3 =
 * compatibility check for 2.9.1 completed
 
