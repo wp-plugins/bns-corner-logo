@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets, gravatar
 Requires at least: 2.8
-Tested up to: 2.9.1
-Stable tag: 1.2.3.1
+Tested up to: 2.9.2
+Stable tag: 1.2.3.2
 
 Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.
 
@@ -42,6 +42,8 @@ This section describes how to install the plugin and get it working.
 2. Choose the corner of the display from the dropdown box.
 3. Click "Save"
 
+Reading this article for further assistance: http://wpfirstaid.com/2009/12/plugin-installation/
+
 NB: This plugin will not resize your images, please make sure you use an appropriate sized image for the area you are placing it in. For the "fixed position" it is strongly recommended to use an image that is at least partially transparent for those readers with smaller screens.
 
 == Frequently Asked Questions ==
@@ -57,18 +59,29 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 3. An image in the sidebar and an image "fixed" in the bottom-right corner showing multiple instances of the widget.
 
 == Other Notes ==
-* Copyright 2009, 2010 Edward Caissie 
+* Copyright 2009, 2010  Edward Caissie
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
- 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- 
-You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Upgrade Notice ==
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 1.2.3.2 =
+* compatible with WordPress version 2.9.2
+* updated license declaration
+
 = 1.2.3.1 =
 * clarified the plugin's release under a GPL license
 
