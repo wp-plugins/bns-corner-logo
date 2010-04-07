@@ -3,7 +3,7 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.3.1
+Version: 1.3.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GPL2
@@ -89,9 +89,16 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
    		/* Display image based on widget settings. */ ?>
 				<div class="bns-logo" align="center">
 					<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-            <img style="border:none; background:none; text-decoration:none;" <!-- alt="<?php if (!$use_gravatar) {echo $image_alt_text;} ?>" -->
+					
             <!-- Use FIRST Admin gravatar -->
-            <?php if ($use_gravatar) { echo get_avatar(get_bloginfo('admin_email'), $gravatar_size); } else { ?> <img style="border:none; background:none; text-decoration:none;" src="<?php echo $image_url;?>" /><?php } ?>              
+            <?php if ($use_gravatar) {
+              echo get_avatar(get_bloginfo('admin_email'), $gravatar_size);
+            } else { ?>
+              <img style="border:none; background:none; text-decoration:none;"
+                alt="<?php echo $image_alt_text; ?>"
+                src="<?php echo $image_url;?>" />
+            <?php } ?>
+                          
 					</a>
 				</div>
 		
@@ -110,9 +117,16 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			  
 			<div class="bns-logo" align="center" style="position:fixed; <?php echo $logo_position; ?> z-index:5;">
 				<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-          <img style="border:none; background:none; text-decoration:none;" <!-- alt="<?php if (!$use_gravatar) {echo $image_alt_text;} ?>" -->
+
           <!-- Use FIRST Admin gravatar -->
-          <?php if ($use_gravatar) { echo get_avatar(get_bloginfo('admin_email'), $gravatar_size); } else { ?> <img style="border:none; background:none; text-decoration:none;" src="<?php echo $image_url;?>" /><?php } ?>              
+            <?php if ($use_gravatar) {
+              echo get_avatar(get_bloginfo('admin_email'), $gravatar_size);
+            } else { ?>
+              <img style="border:none; background:none; text-decoration:none;"
+                alt="<?php echo $image_alt_text; ?>"
+                src="<?php echo $image_url;?>" />
+            <?php } ?>
+            
 				</a>
 			</div>
 
