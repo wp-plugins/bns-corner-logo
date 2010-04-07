@@ -3,17 +3,19 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.2.3.2
+Version: 1.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GPL2
 */
 
-/*  Copyright 2009, 2010  Edward Caissie  (email : edward.caissie@gmail.com)
+/*  Copyright 2009-2010  Edward Caissie  (email : edward.caissie@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+    it under the terms of the GNU General Public License version 2,
+    as published by the Free Software Foundation.
+
+    You may NOT assume that you can use any other version of the GPL.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,6 +25,9 @@ License: GPL2
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+    The license for this software can also likely be found here:
+    http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 global $wp_version;
@@ -53,7 +58,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$widget_ops = array( 'classname' => 'bns-corner-logo', 'description' => __('Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.') );
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 400, 'height' => 350, 'id_base' => 'bns-corner-logo' );
+		$control_ops = array( 'width' => 425, 'height' => 350, 'id_base' => 'bns-corner-logo' );
 
 		/* Create the widget. */
 		$this->WP_Widget( 'bns-corner-logo', 'BNS Corner Logo', $widget_ops, $control_ops );
@@ -73,7 +78,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$logo_location	= $instance['logo_location'];
 		
 		if ( !$widget_plugin ) {
-
+		
 			/* Before widget (defined by themes). */
 			echo $before_widget;
 		
@@ -85,7 +90,8 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 				<div class="bns-logo" align="center">
 					<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
             <img style="border:none; background:none; text-decoration:none;" alt="<?php if (!$use_gravatar) {echo $image_alt_text;} ?>"
-              <?php if ($use_gravatar) { echo get_avatar('1', $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>
+            <!-- Use FIRST Admin gravatar -->
+            <?php if ($use_gravatar) { echo get_avatar(get_bloginfo('admin_email'), $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>              
 					</a>
 				</div>
 		
@@ -104,8 +110,9 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			  
 			<div class="bns-logo" align="center" style="position:fixed; <?php echo $logo_position; ?> z-index:5;">
 				<a style="border:none; background:none; text-decoration:none;" href="<?php echo $image_link; ?>">
-            <img style="border:none; background:none; text-decoration:none;" alt="<?php if (!$use_gravatar) {echo $image_alt_text;} ?>"
-              <?php if ($use_gravatar) { echo get_avatar('1', $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>
+          <img style="border:none; background:none; text-decoration:none;" alt="<?php if (!$use_gravatar) {echo $image_alt_text;} ?>"
+          <!-- Use FIRST Admin gravatar -->
+          <?php if ($use_gravatar) { echo get_avatar(get_bloginfo('admin_email'), $gravatar_size); } else { ?> src="<?php echo $image_url;?>" /><?php } ?>              
 				</a>
 			</div>
 
@@ -152,7 +159,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
 		</p>
 		
 		<table width="100%">
@@ -166,25 +173,32 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
         <td>
           <p>
       			<label for="<?php echo $this->get_field_id( 'gravatar_size' ); ?>"><?php _e('Gravatar size in pixels (suggested max. 512):'); ?></label>
-      			<input id="<?php echo $this->get_field_id( 'gravatar_size' ); ?>" name="<?php echo $this->get_field_name( 'gravatar_size' ); ?>" value="<?php echo $instance['gravatar_size']; ?>" style="width:100%;" />
+      			<input class="widefat" id="<?php echo $this->get_field_id( 'gravatar_size' ); ?>" name="<?php echo $this->get_field_name( 'gravatar_size' ); ?>" value="<?php echo $instance['gravatar_size']; ?>" style="width:100%;" />
       		</p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p>
+            <em>NB: The Gravatar used is set as the first administrator by user ID.</em>
+          </p>
         </td>
       </tr>
     </table>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_url' ); ?>"><?php _e('URL of Image:'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'image_url' ); ?>" name="<?php echo $this->get_field_name( 'image_url' ); ?>" value="<?php echo $instance['image_url']; ?>" style="width:100%;" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'image_url' ); ?>" name="<?php echo $this->get_field_name( 'image_url' ); ?>" value="<?php echo $instance['image_url']; ?>" />
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_alt_text' ); ?>"><?php _e('ALT text of Image:'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'image_alt_text' ); ?>" name="<?php echo $this->get_field_name( 'image_alt_text' ); ?>" value="<?php echo $instance['image_alt_text']; ?>" style="width:100%;" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'image_alt_text' ); ?>" name="<?php echo $this->get_field_name( 'image_alt_text' ); ?>" value="<?php echo $instance['image_alt_text']; ?>" />
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_link' ); ?>"><?php _e('URL to follow:'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'image_link' ); ?>" name="<?php echo $this->get_field_name( 'image_link' ); ?>" value="<?php echo $instance['image_link']; ?>" style="width:100%;" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'image_link' ); ?>" name="<?php echo $this->get_field_name( 'image_link' ); ?>" value="<?php echo $instance['image_link']; ?>" />
 		</p>
 
 		<hr /> <!-- Separates functionality: Widget above - plugin below -->
@@ -196,7 +210,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'logo_location' ); ?>"><?php _e('Plugin Logo Location:'); ?></label> 
-			<select id="<?php echo $this->get_field_id( 'logo_location' ); ?>" name="<?php echo $this->get_field_name( 'logo_location' ); ?>" class="widefat" style="width:100%;">
+			<select id="<?php echo $this->get_field_id( 'logo_location' ); ?>" name="<?php echo $this->get_field_name( 'logo_location' ); ?>" class="widefat">
 				<option <?php if ( 'Bottom-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Right</option>
 				<option <?php if ( 'Bottom-Left' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Left</option>
 				<option <?php if ( 'Top-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Top-Right</option>
