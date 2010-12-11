@@ -3,11 +3,14 @@
 Plugin Name: BNS Corner Logo
 Plugin URI: http://buynowshop.com/plugins/bns-corner-logo/
 Description: Widget to display a user selected image as a logo; or, used as a plugin that displays the image fixed in one of the four corners of the display.
-Version: 1.3.2
+Version: 1.3.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GPL2
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
+
+/* Last Updated: December 12, 2010 v1.3.3 */
 
 /*  Copyright 2009-2010  Edward Caissie  (email : edward.caissie@gmail.com)
 
@@ -32,7 +35,7 @@ License: GPL2
 
 global $wp_version;
 $exit_message = 'BNS Corner Logo requires WordPress version 2.8 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
-if (version_compare($wp_version, "2.8", "<")) {
+if (version_compare($wp_version, "3.0", "<")) {
 	exit ($exit_message);
 }
 
@@ -40,7 +43,7 @@ if (version_compare($wp_version, "2.8", "<")) {
 add_action( 'wp_head', 'add_BNS_Corner_Logo_Header_Code' );
 
 function add_BNS_Corner_Logo_Header_Code() {
-  echo '<link type="text/css" rel="stylesheet" href="' . get_bloginfo('url') . '/wp-content/plugins/bns-corner-logo/css/bns-corner-logo-style.css" />' . "\n";
+  echo '<link type="text/css" rel="stylesheet" href="' . home_url() . '/wp-content/plugins/bns-corner-logo/css/bns-corner-logo-style.css" />' . "\n";
 }
 
 /* Add our function to the widgets_init hook. */
