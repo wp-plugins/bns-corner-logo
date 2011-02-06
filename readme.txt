@@ -84,7 +84,7 @@ Please stay current with your WordPress installation, your active theme, and you
 
 == Changelog ==
 = 1.4 =
-* released ...
+* released February 6, 2011
 * correct version requirement message
 * added option to open "URL to follow" in new page
 * moved common inline styles to plugin's stylesheet
