@@ -5,6 +5,8 @@
     BNS Corner Logo is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
+    
+    You may NOT assume that you can use any other version of the GPL.
 
     BNS Corner Logo is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,4 +23,4 @@ div.bns-logo {text-align: center;}
 div.bns-logo .avatar {float:none; margin:0; width:auto;}
 div.bns-logo a img {border:none; background:none; text-decoration:none; width: 100%;}
 
-/* Last Updated: February 6, 2011 v1.4 */
+/* Last Updated: June 4, 2011 v1.5 */

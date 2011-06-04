@@ -39,17 +39,20 @@ if (version_compare($wp_version, "3.0", "<")) { // per the use of home_url()
 	exit ($exit_message);
 }
 
-/* Add BNS Logo Style sheet */
-add_action( 'wp_head', 'add_BNS_Corner_Logo_Header_Code' );
-function add_BNS_Corner_Logo_Header_Code() {
-	echo '<link type="text/css" rel="stylesheet" href="' . home_url() . '/wp-content/plugins/bns-corner-logo/css/bns-corner-logo-style.css" />' . "\n";
+// Add BNS Corner Logo Scripts and Styles
+function BNS_Corner_Logo_Scripts_and_Styles_Action() {
+	if ( ! is_admin() ) {
+    /* Enqueue Style Sheets */
+  	wp_enqueue_style( 'BNS-Corner-Logo-Style', plugin_dir_url( __FILE__ ) . '/css/bns-corner-logo-style.css', array(), '1.5', 'screen' );
+	}
 }
+add_action('wp_enqueue_scripts', 'BNS_Corner_Logo_Scripts_and_Styles_Action');
 
 /* Add our function to the widgets_init hook. */
-add_action( 'widgets_init', 'load_my_bns_corner_logo_widget' );
+add_action( 'widgets_init', 'load_bns_corner_logo_widget' );
 
 /* Function that registers our widget. */
-function load_my_bns_corner_logo_widget() {
+function load_bns_corner_logo_widget() {
 	register_widget( 'BNS_Corner_Logo_Widget' );
 }
 
@@ -60,7 +63,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$widget_ops = array( 'classname' => 'bns-corner-logo', 'description' => __('Widget to display a logo; or, used as a plugin displays image fixed in one of the four corners.') );
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 425, 'height' => 350, 'id_base' => 'bns-corner-logo' );
+		$control_ops = array( 'width' => 200, 'height' => 350, 'id_base' => 'bns-corner-logo' );
 
 		/* Create the widget. */
 		$this->WP_Widget( 'bns-corner-logo', 'BNS Corner Logo', $widget_ops, $control_ops );
@@ -73,10 +76,10 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		$title          = apply_filters('widget_title', $instance['title'] );
 		$use_gravatar   = $instance['use_gravatar'];
 		$gravatar_size  = $instance['gravatar_size'];
-		$image_url	= $instance['image_url'];
+		$image_url      = $instance['image_url'];
 		$image_alt_text	= $instance['image_alt_text'];
 		$image_link     = $instance['image_link'];
-		$new_window	= $instance['new_window'];
+		$new_window     = $instance['new_window'];
 		$widget_plugin	= $instance['widget_plugin'];		
 		$logo_location	= $instance['logo_location'];
 		
@@ -134,13 +137,13 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		/* Strip tags (if needed) and update the widget settings. */
-		$instance['title']		= strip_tags( $new_instance['title'] );
-		$instance['use_gravatar']	= $new_instance['use_gravatar'];
+		$instance['title']          = strip_tags( $new_instance['title'] );
+		$instance['use_gravatar']   = $new_instance['use_gravatar'];
 		$instance['gravatar_size']	= $new_instance['gravatar_size'];
-		$instance['image_url']		= strip_tags( $new_instance['image_url'] );
+		$instance['image_url']      = strip_tags( $new_instance['image_url'] );
 		$instance['image_alt_text']	= strip_tags( $new_instance['image_alt_text'] );
-		$instance['image_link']		= strip_tags( $new_instance['image_link'] );
-		$instance['new_window']		= $new_instance['new_window'];
+		$instance['image_link']     = strip_tags( $new_instance['image_link'] );
+		$instance['new_window']     = $new_instance['new_window'];
 		$instance['widget_plugin']	= $new_instance['widget_plugin'];    
 		$instance['logo_location']	= $new_instance['logo_location'];
 		return $instance;
@@ -149,13 +152,13 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 	function form( $instance ) {
 		/* Set up some default widget settings. */
 		$defaults = array(
-				'title'			=> __('My Logo Image'),
+				'title'           => __('My Logo Image'),
 				'use_gravatar'		=> false,
 				'gravatar_size'		=> '96',
-				'image_url'		=> '',
+				'image_url'       => '',
 				'image_alt_text'	=> '',
-				'image_link'		=> '',
-				'new_window'		=> false,
+				'image_link'      => '',
+				'new_window'      => false,
 				'widget_plugin'		=> false,      
 				'logo_location'		=> 'Bottom-Right'
 			);
@@ -167,27 +170,16 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
 		</p>
 		
-		<table width="100%">
-			<tr>
-				<td width="30%">
-					<p>
-						<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['use_gravatar'], true ); ?> id="<?php echo $this->get_field_id( 'use_gravatar' ); ?>" name="<?php echo $this->get_field_name( 'use_gravatar' ); ?>" />
-						<label for="<?php echo $this->get_field_id( 'use_gravatar' ); ?>"><?php _e('Use your <a href="http://gravatar.com">Gravatar</a> image?'); ?></label>
-					</p>
-				</td>
-				<td>
-					<p>
-						<label for="<?php echo $this->get_field_id( 'gravatar_size' ); ?>"><?php _e('Gravatar size in pixels (suggested max. 512):'); ?></label>
-						<input class="widefat" id="<?php echo $this->get_field_id( 'gravatar_size' ); ?>" name="<?php echo $this->get_field_name( 'gravatar_size' ); ?>" value="<?php echo $instance['gravatar_size']; ?>" style="width:100%;" />
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<p><em>NB: The Gravatar used is set as the first administrator by user ID.</em></p>
-				</td>
-			</tr>
-		</table>
+		<p>
+			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['use_gravatar'], true ); ?> id="<?php echo $this->get_field_id( 'use_gravatar' ); ?>" name="<?php echo $this->get_field_name( 'use_gravatar' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'use_gravatar' ); ?>"><?php _e('Use your <a href="http://gravatar.com">Gravatar</a> image?'); ?></label>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'gravatar_size' ); ?>"><?php _e('Gravatar size in pixels:'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'gravatar_size' ); ?>" name="<?php echo $this->get_field_name( 'gravatar_size' ); ?>" value="<?php echo $instance['gravatar_size']; ?>" style="width:100%;" />
+			<em>NB: The Gravatar used is set as the first administrator by user ID.</em>
+		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'image_url' ); ?>"><?php _e('URL of Image:'); ?></label>
@@ -206,7 +198,7 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		
 		<p>
 			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['new_window'], true ); ?> id="<?php echo $this->get_field_id( 'new-window' ); ?>" name="<?php echo $this->get_field_name( 'new_window' ); ?>" />
-			<label for="<?php echo $this->get_field_id( 'new_window' ); ?>"><?php _e('Open the "URL to follow" in a new window?'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'new_window' ); ?>"><?php _e('Open "URL to follow" in new window?'); ?></label>
 		</p>		
 
 		<hr /> <!-- Separates functionality: Widget above - plugin below -->
@@ -219,10 +211,10 @@ class BNS_Corner_Logo_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'logo_location' ); ?>"><?php _e('Plugin Logo Location:'); ?></label> 
 			<select id="<?php echo $this->get_field_id( 'logo_location' ); ?>" name="<?php echo $this->get_field_name( 'logo_location' ); ?>" class="widefat">
-				<option <?php if ( 'Bottom-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Right</option>
-				<option <?php if ( 'Bottom-Left' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Bottom-Left</option>
-				<option <?php if ( 'Top-Right' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Top-Right</option>
-				<option <?php if ( 'Top-Left' == $instance['logo_location'] ) echo 'selected="selected"'; ?>>Top-Left</option>
+				<option <?php selected( 'Bottom-Right', $instance['logo_location'], true ); ?>>Bottom-Right</option>
+				<option <?php selected( 'Bottom-Left', $instance['logo_location'], true ); ?>>Bottom-Left</option>
+				<option <?php selected( 'Top-Right', $instance['logo_location'], true ); ?>>Top-Right</option>
+				<option <?php selected( 'Top-Left', $instance['logo_location'], true ); ?>>Top-Left</option>
 			</select>
 		</p>
 
