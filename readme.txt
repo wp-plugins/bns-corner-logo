@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com/
 Tags: image, logo, multiple widgets, gravatar, multisite compatible, widget-only
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.8.4
+Tested up to: 4.2
+Stable tag: 1.9
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -61,7 +61,7 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 3. An image in the sidebar and an image "fixed" in the bottom-right corner showing multiple instances of the widget.
 
 == Other Notes ==
-  Copyright 2009-2014  Edward Caissie  (email : edward.caissie@gmail.com)
+  Copyright 2009-2015  Edward Caissie  (email : edward.caissie@gmail.com)
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2,
@@ -85,6 +85,21 @@ Yes, this plugin has been made for multi-widget compatibility. Each instance of 
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 1.9 =
+* Released March 2015
+* Added `BNS Corner Logo Update Message` hook/callback routine
+* Added `BNS_CUSTOM_PATH` and `BNS_CUSTOM_URL` constants
+* Added calls to custom JavaScript and CSS files in the `/bns-customs/` folder
+* Changed `textdomain` from `bns-cl` to the plugin slug `bns-corner-logo`
+* Corrected typo in custom JavaScript file name
+* Minor code reformatting
+* Removed extraneous comments
+* Update version, tested up to, copyright, etc.
+
+= 1.8.5 =
+* Released January 2014
+* More sanitizing - `$image_url` and `$image_link`; thanks ScheRas
+
 = 1.8.4 =
 * Released January 2014
 * Properly escape the alt image attribute
@@ -197,7 +212,7 @@ Please stay current with your WordPress installation, your active theme, and you
 = 1.1.1 =
 * compatibility check for WP2.9 completed
 * increased the width of the option panel
-* beginning of code to implement gravatars included (but not complete or visually apparent)
+* beginning of code to implement Gravatar included (but not complete or visually apparent)
 
 = 1.1 =
 * added version checking using $wp_version
